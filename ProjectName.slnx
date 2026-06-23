@@ -1,0 +1,54 @@
+<Solution>
+  <Project Path="src/ProjectName.Host/ProjectName.Host.csproj" />
+  <Folder Name="/Source/Infrastructure/">
+    <Project Path="src/Infrastructure/ProjectName.Persistence/ProjectName.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/Source/" />
+  <Folder Name="/Source/Product/" />
+  <Folder Name="/Source/Product/Modules/" />
+  <Folder Name="/Source/Product/Modules/Auth/">
+    <Project Path="src/Product/Modules/Auth/Auth.Contracts/Auth.Contracts.csproj" />
+  </Folder>
+  <Folder Name="/Source/Product/Modules/Auth/Adapters/">
+    <Project Path="src/Product/Modules/Auth/Adapters/Auth.Infrastructure/Auth.Infrastructure.csproj" />
+    <Project Path="src/Product/Modules/Auth/Adapters/Auth.Presentation/Auth.Presentation.csproj" />
+  </Folder>
+  <Folder Name="/Source/Product/Modules/Auth/Core/">
+    <Project Path="src/Product/Modules/Auth/Core/Auth.Application/Auth.Application.csproj" />
+    <Project Path="src/Product/Modules/Auth/Core/Auth.Domain/Auth.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Source/Product/Modules/Users/">
+    <Project Path="src/Product/Modules/Users/Users.Contracts/Users.Contracts.csproj" />
+  </Folder>
+  <Folder Name="/Source/Product/Modules/Users/Adapters/">
+    <Project Path="src/Product/Modules/Users/Adapters/Users.Infrastructure/Users.Infrastructure.csproj" />
+    <Project Path="src/Product/Modules/Users/Adapters/Users.Presentation/Users.Presentation.csproj" />
+  </Folder>
+  <Folder Name="/Source/Product/Modules/Users/Core/">
+    <Project Path="src/Product/Modules/Users/Core/Users.Application/Users.Application.csproj" />
+    <Project Path="src/Product/Modules/Users/Core/Users.Domain/Users.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Source/Product/Shared/BuildingBlocks/">
+    <Project Path="src/Product/Shared/BuildingBlocks/Shared.BuildingBlocks.Application/Shared.BuildingBlocks.Application.csproj" />
+    <Project Path="src/Product/Shared/BuildingBlocks/Shared.BuildingBlocks.Core/Shared.BuildingBlocks.Core.csproj" />
+  </Folder>
+  <Folder Name="/Source/Product/Shared/">
+    <Project Path="src/Product/Shared/Shared.WebFramework/Shared.WebFramework.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/ProjectName.ArchitectureTests/ProjectName.ArchitectureTests.csproj" />
+  </Folder>
+  <Folder Name="/Tests/Modules/" />
+  <Folder Name="/Tests/Modules/Auth/">
+    <Project Path="tests/Modules/Auth/Auth.CoreTests/Auth.CoreTests.csproj" />
+    <Project Path="tests/Modules/Auth/Auth.IntegrationTests/Auth.IntegrationTests.csproj" />
+  </Folder>
+  <Folder Name="/Tests/Modules/Users/">
+    <Project Path="tests/Modules/Users/Users.CoreTests/Users.CoreTests.csproj" />
+    <Project Path="tests/Modules/Users/Users.IntegrationTests/Users.IntegrationTests.csproj" />
+  </Folder>
+  <Folder Name="/Tests/Shared/">
+    <Project Path="tests/Shared/Shared.IntegrationTesting/Shared.IntegrationTesting.csproj" />
+    <Project Path="tests/Shared/Shared.TestKit/Shared.TestKit.csproj" />
+  </Folder>
+</Solution>

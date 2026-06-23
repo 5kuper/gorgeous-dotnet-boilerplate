@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Shared\BuildingBlocks\Shared.BuildingBlocks.Core\Shared.BuildingBlocks.Core.csproj" />
+  </ItemGroup>
+
+</Project>
+
+

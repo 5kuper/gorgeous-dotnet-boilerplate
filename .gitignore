@@ -1,0 +1,50 @@
+## Build output
+bin/
+obj/
+artifacts/
+
+## Test and coverage output
+TestResults/
+coverage/
+coverage.*
+*.trx
+*.coverage
+*.coveragexml
+
+## IDE and user-local files
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Visual Studio Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+## Rider
+*.DotSettings.user
+
+## Local configuration and secrets
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+appsettings.*.Local.json
+secrets.json
+
+## Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.cache
+*.bak
+*.orig
+
+## OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\ProjectName.Host\ProjectName.Host.csproj" />
+    <ProjectReference Include="..\..\..\src\Product\Modules\Users\Adapters\Users.Presentation\Users.Presentation.csproj" />
+    <ProjectReference Include="..\..\..\src\Product\Modules\Users\Adapters\Users.Infrastructure\Users.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\Product\Modules\Auth\Adapters\Auth.Presentation\Auth.Presentation.csproj" />
+    <ProjectReference Include="..\..\..\src\Product\Modules\Auth\Adapters\Auth.Infrastructure\Auth.Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared.TestKit\Shared.TestKit.csproj" />
+  </ItemGroup>
+
+</Project>
+
+

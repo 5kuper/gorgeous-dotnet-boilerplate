@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="$(NuGetPackageRoot)microsoft.codeanalysis.workspaces.msbuild\*\contentFiles\any\any\BuildHost-net*\**\*">
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\ProjectName.Persistence\ProjectName.Persistence.csproj" />
+    <ProjectReference Include="..\Product\Modules\Users\Core\Users.Application\Users.Application.csproj" />
+    <ProjectReference Include="..\Product\Modules\Users\Adapters\Users.Infrastructure\Users.Infrastructure.csproj" />
+    <ProjectReference Include="..\Product\Modules\Users\Adapters\Users.Presentation\Users.Presentation.csproj" />
+    <ProjectReference Include="..\Product\Modules\Auth\Auth.Contracts\Auth.Contracts.csproj" />
+    <ProjectReference Include="..\Product\Modules\Auth\Core\Auth.Application\Auth.Application.csproj" />
+    <ProjectReference Include="..\Product\Modules\Auth\Adapters\Auth.Infrastructure\Auth.Infrastructure.csproj" />
+    <ProjectReference Include="..\Product\Modules\Auth\Adapters\Auth.Presentation\Auth.Presentation.csproj" />
+    <ProjectReference Include="..\Product\Shared\Shared.WebFramework\Shared.WebFramework.csproj" />
+  </ItemGroup>
+
+</Project>
+
+

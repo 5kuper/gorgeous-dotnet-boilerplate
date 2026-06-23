@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Users.Application\Users.Application.csproj" />
+    <ProjectReference Include="..\..\Users.Contracts\Users.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Shared.WebFramework\Shared.WebFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>
+
+
