@@ -7,8 +7,18 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="NetArchTest.Rules" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Infrastructure\ProjectName.Persistence\ProjectName.Persistence.csproj" />
+    <ProjectReference Include="..\..\src\Product\Modules\**\*.csproj" />
+    <ProjectReference Include="..\..\src\Product\Shared\BuildingBlocks\Shared.BuildingBlocks.Application\Shared.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\src\Product\Shared\BuildingBlocks\Shared.BuildingBlocks.Core\Shared.BuildingBlocks.Core.csproj" />
+    <ProjectReference Include="..\..\src\Product\Shared\Shared.WebFramework\Shared.WebFramework.csproj" />
+    <ProjectReference Include="..\..\src\ProjectName.Host\ProjectName.Host.csproj" />
   </ItemGroup>
 
   <ItemGroup>
