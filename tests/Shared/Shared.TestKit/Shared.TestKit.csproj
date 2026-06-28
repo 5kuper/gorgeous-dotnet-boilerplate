@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Product\Shared\BuildingBlocks\Shared.BuildingBlocks.Application\Shared.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Product\Shared\BuildingBlocks\Shared.BuildingBlocks.Core\Shared.BuildingBlocks.Core.csproj" />
+  </ItemGroup>
+
 </Project>
 
 

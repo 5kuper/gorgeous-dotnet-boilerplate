@@ -29,6 +29,82 @@ tests/
 
 `Shared.IntegrationTesting` contains reusable integration test infrastructure.
 
+## Test Project Structure
+
+Module test projects separate behavior specifications from local utilities:
+
+```text
+{Module}.CoreTests/
+|-- Tests/
+|   |-- Domain/
+|   `-- Application/
+`-- Support/
+    |-- Assertions/
+    |-- Builders/
+    |-- Fixtures/
+    `-- TestDoubles/
+
+{Module}.IntegrationTests/
+|-- Persistence/
+|   |-- Support/
+|   `-- *Tests.cs
+`-- WebApi/
+    |-- Support/
+    `-- *Tests.cs
+```
+
+Core test projects use top-level `Tests/` for test classes and `Support/` for local utilities. Integration test projects group by tested boundary first: keep persistence tests and their utilities under `Persistence/`, and web API tests and their utilities under `WebApi/`.
+
+Support folders should contain builders, fake services, fixtures, seed data, custom clients, and local assertion helpers. Test classes should stay next to their tested boundary, outside that boundary's `Support/` folder.
+
+Keep utilities local to a test project while they are module-specific. Move helpers into `Shared.TestKit` or `Shared.IntegrationTesting` only when they are used by multiple test projects.
+
+`Shared.TestKit` groups reusable helpers by test role:
+
+```text
+Shared.TestKit/
+|-- Assertions/
+|-- TestData/
+`-- TestDoubles/
+```
+
+`Shared.IntegrationTesting` groups reusable integration infrastructure by framework concern, such as database, messaging, authentication, and web API metadata helpers.
+
+Prefer domain tests and integration tests as the main coverage. Add application tests selectively for use cases with meaningful orchestration, transaction boundaries, port coordination, or important failure-path mapping. Do not use `InternalsVisibleTo` by default; application tests should go through public commands, queries, contracts, MediatR, or HTTP-level boundaries.
+
+## Testing A New Module
+
+For each product module, add two module-level test projects:
+
+```text
+tests/Modules/{Module}/{Module}.CoreTests/
+|-- Tests/
+|   |-- Domain/
+|   `-- Application/
+`-- Support/
+
+tests/Modules/{Module}/{Module}.IntegrationTests/
+|-- Persistence/
+|   |-- Support/
+|   `-- *Tests.cs
+`-- WebApi/
+    |-- Support/
+    `-- *Tests.cs
+```
+
+Start with domain and integration coverage. Add application tests only when the use case has meaningful orchestration, port coordination, transaction behavior, or failure-path mapping.
+
+Minimum coverage for a new module:
+
+- domain invariants, aggregate lifecycle, domain errors, and domain events;
+- use cases only where orchestration is non-trivial;
+- EF mappings, constraints, repository behavior, read models, and migrations;
+- HTTP route mapping, authorization metadata, rate limits, validation, and error mapping;
+- module contracts used by other modules;
+- architecture boundaries through `ProjectName.ArchitectureTests`.
+
+Keep new module helpers local first. Promote helpers to `Shared.TestKit` or `Shared.IntegrationTesting` only after at least two test projects need the same helper and the helper does not encode module-specific knowledge.
+
 ## When To Add Tests
 
 Add tests when a change affects:

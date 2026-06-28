@@ -17,7 +17,9 @@ internal sealed class RefreshSessionConfig : IEntityTypeConfiguration<RefreshSes
         builder.Property(session => session.IpAddress).HasMaxLength(128);
         builder.Property(session => session.ExpiresAtUtc).IsRequired();
         builder.Property(session => session.CreatedAtUtc).IsRequired();
-        builder.Property(session => session.RowVersion).IsRowVersion();
+        builder.Property(session => session.RowVersion)
+            .IsRequired()
+            .IsConcurrencyToken();
 
         builder.HasIndex(session => session.TokenHash).IsUnique();
         builder.HasIndex(session => session.UserId);

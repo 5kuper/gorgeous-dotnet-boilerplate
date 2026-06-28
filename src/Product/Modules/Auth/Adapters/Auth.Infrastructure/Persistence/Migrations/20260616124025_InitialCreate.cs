@@ -68,7 +68,7 @@ namespace Auth.Infrastructure.Persistence.Migrations
                     ReplacedBySessionId = table.Column<long>(type: "INTEGER", nullable: true),
                     DeviceName = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true),
                     IpAddress = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    RowVersion = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: false)
+                    RowVersion = table.Column<byte[]>(type: "BLOB", nullable: false)
                 },
                 constraints: table =>
                 {

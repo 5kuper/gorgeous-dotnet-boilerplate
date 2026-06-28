@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Users.Contracts.Authentication;
+using Users.Domain.Entities;
 
 namespace Users.Infrastructure.Persistence.Readers;
 
@@ -9,19 +10,21 @@ internal sealed class EfUserAuthProfileReader(UsersDbContext dbContext) : IUserA
         Guid publicId,
         CancellationToken ct = default)
     {
-        return Query().FirstOrDefaultAsync(user => user.PublicId == publicId, ct);
+        return Project(dbContext.Users.Where(user => user.PublicId == publicId))
+            .FirstOrDefaultAsync(ct);
     }
 
     public Task<UserAuthProfile?> GetByUserIdAsync(
         long userId,
         CancellationToken ct = default)
     {
-        return Query().FirstOrDefaultAsync(user => user.UserId == userId, ct);
+        return Project(dbContext.Users.Where(user => user.Id == userId))
+            .FirstOrDefaultAsync(ct);
     }
 
-    private IQueryable<UserAuthProfile> Query()
+    private static IQueryable<UserAuthProfile> Project(IQueryable<User> users)
     {
-        return dbContext.Users
+        return users
             .AsNoTracking()
             .Select(user => new UserAuthProfile(
                 user.Id,
