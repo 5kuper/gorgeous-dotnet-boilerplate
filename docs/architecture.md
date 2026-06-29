@@ -18,6 +18,7 @@ Product/Modules
 
 Libraries
 |-- Gorgeous.Abstractions
+|-- Gorgeous.Ai
 `-- Gorgeous.Web
 
 Product/Shared
@@ -29,6 +30,7 @@ Product/Shared
     `-- Shared.Conventions
 
 RootInfrastructure
+|-- ProjectName.Ai
 `-- ProjectName.Persistence
 ```
 
@@ -77,6 +79,7 @@ src/Libraries/
 
 `Gorgeous.Abstractions` contains portable abstractions:
 
+- generic AI chat completion contracts and model/provider keys;
 - `Result`
 - `Result<T>`
 - `Error`
@@ -85,6 +88,13 @@ src/Libraries/
 - `ICurrentUser`
 
 It must stay framework-free and must not depend on ASP.NET Core or product code.
+
+`Gorgeous.Ai` is the reusable AI integration library. At this stage it contains provider-neutral infrastructure:
+
+- a provider-keyed chat completion client resolver;
+- DI registration helpers for future provider packages.
+
+It references `Gorgeous.Abstractions` only today. Future provider adapters may add provider SDK, HTTP payload, authentication, and provider API implementation details behind `IAiChatCompletionClient`. Those adapters must not know about product scenarios or depend on product-owned projects.
 
 `Gorgeous.Web` contains ASP.NET Core helpers and adapters for those abstractions:
 
@@ -107,6 +117,7 @@ They are part of this product's modular monolith and are not reusable library pa
 
 `Shared.Kernel` is the product-owned shared domain kernel. It contains domain primitives and explicitly shared domain concepts used by multiple modules:
 
+- `Ai/AiScenario`
 - `BuildingBlocks/Entity`
 - `BuildingBlocks/AggregateRoot`
 - `BuildingBlocks/ValueObject`
@@ -115,6 +126,7 @@ They are part of this product's modular monolith and are not reusable library pa
 
 `Shared.AppModel` contains the shared application-layer programming model:
 
+- AI scenario ports such as `IAiScenarioModelResolver` and `IAiScenarioChatCompletionClient`
 - `ICommand`
 - `ICommandHandler`
 - `IQuery`
@@ -122,6 +134,40 @@ They are part of this product's modular monolith and are not reusable library pa
 - `IUnitOfWork`
 
 Add a type to shared building blocks only when it is generic, stable, and genuinely shared across modules. Module-specific business language belongs in the module.
+
+## AI Boundary
+
+AI calls use a two-level boundary:
+
+```text
+Product code
+  -> AiScenario
+  -> IAiScenarioModelResolver
+  -> AiModelSelection
+  -> IAiChatCompletionClient
+```
+
+Product modules depend on `Shared.AppModel` ports and `Gorgeous.Abstractions` contracts. They must not reference `Gorgeous.Ai` or concrete provider infrastructure.
+
+Scenario vocabulary lives in `Shared.Kernel/Ai`. Product-facing ports live in `Shared.AppModel/Ai`. Scenario routing is implemented in root infrastructure (`ProjectName.Ai`) because it composes product scenario configuration with portable AI provider clients.
+
+Configuration is split by responsibility:
+
+```json
+{
+  "Ai": {
+    "Providers": {},
+    "Scenarios": {
+      "Example": {
+        "Provider": "",
+        "Model": ""
+      }
+    }
+  }
+}
+```
+
+`Ai:Providers` is reserved for future provider packages. `Ai:Scenarios` maps product scenarios to provider/model selections. Missing or unknown AI scenario configuration returns `Result` errors; it does not throw business-flow exceptions.
 
 ## Error Flow
 

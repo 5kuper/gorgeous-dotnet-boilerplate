@@ -167,6 +167,12 @@ Use this application-level infrastructure area for shared database connection se
 
 When a workflow needs to update multiple DbContexts, expose a port in the application layer and implement the transaction in application-level infrastructure.
 
+Non-persistence application-level infrastructure lives outside the persistence project. For example, product AI scenario routing and AI infrastructure registration live under:
+
+```text
+src/RootInfrastructure/ProjectName.Ai/
+```
+
 ## Add A Migration
 
 Place migrations with the owning infrastructure project.
@@ -186,15 +192,27 @@ Use shared projects only for stable cross-module concepts.
 Use `src/Libraries` for portable libraries that can move between projects:
 
 - `Gorgeous.Abstractions` for portable result/current-user/clock abstractions.
+- `Gorgeous.Abstractions/Ai` for provider-neutral AI request/response contracts.
+- `Gorgeous.Ai` for reusable AI integration infrastructure. It currently contains provider-neutral client resolution and DI registration boundaries; future provider adapters may live behind the same abstractions.
 - `Gorgeous.Web` for ASP.NET Core helpers and adapters over those abstractions.
 
 Use `src/Product/Shared` for product-owned building blocks:
 
 - `Shared.Kernel` for the product-owned shared domain kernel.
+- `Shared.Kernel/Ai` for product AI scenario vocabulary.
 - `Shared.AppModel` for the shared application-layer programming model, such as commands, queries, handlers, and `IUnitOfWork`.
+- `Shared.AppModel/Ai` for product-facing AI scenario ports.
 
 Keep shared domain primitives such as `Entity`, `AggregateRoot`, `ValueObject`, `IDomainEvent`, and `IRepository` under `src/Product/Shared/Kernel/BuildingBlocks`.
 
 Use `src/Product/Shared/Conventions` for product-owned API and cross-cutting naming conventions such as authorization policy names, rate-limit policy names, claim names, headers, and route identifiers.
 
 If a type is shared only because two modules currently look similar, keep it local until a stable abstraction is clear.
+
+## Add AI Usage
+
+Use `IAiScenarioChatCompletionClient` from `Shared.AppModel/Ai` when product code needs chat completion. Pass an `AiScenario` from `Shared.Kernel/Ai`; do not choose concrete provider names inside modules.
+
+Map scenarios to provider/model selections under `Ai:Scenarios` in host configuration. Future provider packages can register `IAiChatCompletionClient` implementations through `Gorgeous.Ai`, but modules must not reference `Gorgeous.Ai`, OpenAI, GigaChat, or provider SDKs directly.
+
+Keep scenario routing in `ProjectName.Ai`, not in module code or `ProjectName.Persistence`.

@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\RootInfrastructure\ProjectName.Ai\ProjectName.Ai.csproj" />
     <ProjectReference Include="..\..\src\RootInfrastructure\ProjectName.Persistence\ProjectName.Persistence.csproj" />
+    <ProjectReference Include="..\..\src\Libraries\Gorgeous.Ai\Gorgeous.Ai.csproj" />
     <ProjectReference Include="..\..\src\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\Libraries\Gorgeous.Web\Gorgeous.Web.csproj" />
     <ProjectReference Include="..\..\src\Product\Modules\**\*.csproj" />

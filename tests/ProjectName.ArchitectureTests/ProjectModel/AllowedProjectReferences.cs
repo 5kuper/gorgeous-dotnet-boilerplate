@@ -46,12 +46,14 @@ internal static class AllowedProjectReferences
             ArchitectureLayer.Application => AllowsApplicationReference(project, dependency),
             ArchitectureLayer.Infrastructure => AllowsInfrastructureReference(project, dependency),
             ArchitectureLayer.Presentation => AllowsPresentationReference(project, dependency),
+            ArchitectureLayer.GorgeousAi => dependency.Layer is ArchitectureLayer.GorgeousAbstractions,
             ArchitectureLayer.GorgeousAbstractions => false,
             ArchitectureLayer.GorgeousWeb => dependency.Layer is ArchitectureLayer.GorgeousAbstractions,
             ArchitectureLayer.SharedKernel => false,
-            ArchitectureLayer.SharedAppModel => dependency.Layer is ArchitectureLayer.GorgeousAbstractions,
+            ArchitectureLayer.SharedAppModel => dependency.Layer is ArchitectureLayer.GorgeousAbstractions or ArchitectureLayer.SharedKernel,
             ArchitectureLayer.SharedConventions => false,
             ArchitectureLayer.Host => AllowsHostReference(dependency),
+            ArchitectureLayer.RootInfrastructure => AllowsRootInfrastructureReference(dependency),
             ArchitectureLayer.Persistence => AllowsPersistenceReference(dependency),
             _ => false,
         };
@@ -109,6 +111,7 @@ internal static class AllowedProjectReferences
     {
         if (dependency.Layer is
             ArchitectureLayer.Persistence or
+            ArchitectureLayer.RootInfrastructure or
             ArchitectureLayer.GorgeousAbstractions or
             ArchitectureLayer.GorgeousWeb or
             ArchitectureLayer.SharedConventions)
@@ -124,9 +127,20 @@ internal static class AllowedProjectReferences
                    ArchitectureLayer.Presentation;
     }
 
+    private static bool AllowsRootInfrastructureReference(ArchitectureProject dependency)
+    {
+        return dependency.Layer is
+            ArchitectureLayer.GorgeousAi or
+            ArchitectureLayer.GorgeousAbstractions or
+            ArchitectureLayer.SharedAppModel or
+            ArchitectureLayer.SharedKernel;
+    }
+
     private static bool AllowsPersistenceReference(ArchitectureProject dependency)
     {
-        if (dependency.Layer is ArchitectureLayer.GorgeousAbstractions or ArchitectureLayer.SharedKernel)
+        if (dependency.Layer is
+            ArchitectureLayer.GorgeousAbstractions or
+            ArchitectureLayer.SharedAppModel)
         {
             return true;
         }
@@ -147,15 +161,18 @@ internal static class AllowedProjectReferences
                 "Infrastructure may reference own Domain/Application, any module Contracts, Gorgeous.Abstractions, Shared.AppModel, and Shared.Kernel.",
             ArchitectureLayer.Presentation =>
                 "Presentation may reference own Application/Contracts, Gorgeous.Abstractions, Gorgeous.Web, and shared conventions constants.",
+            ArchitectureLayer.GorgeousAi => "Gorgeous.Ai may reference Gorgeous.Abstractions only.",
             ArchitectureLayer.GorgeousAbstractions => "Gorgeous.Abstractions must not reference other source projects.",
             ArchitectureLayer.GorgeousWeb => "Gorgeous.Web may reference Gorgeous.Abstractions only.",
             ArchitectureLayer.SharedKernel => "Shared.Kernel must not reference other source projects.",
-            ArchitectureLayer.SharedAppModel => "Shared.AppModel may reference Gorgeous.Abstractions only.",
+            ArchitectureLayer.SharedAppModel => "Shared.AppModel may reference Gorgeous.Abstractions and Shared.Kernel only.",
             ArchitectureLayer.SharedConventions => "Shared.Conventions must not reference other source projects.",
             ArchitectureLayer.Host =>
-                "Host may reference Persistence, Gorgeous.Abstractions, Gorgeous.Web, shared conventions constants, and module Contracts/Application/Infrastructure/Presentation projects for composition.",
+                "Host may reference root infrastructure, Persistence, Gorgeous.Abstractions, Gorgeous.Web, shared conventions constants, and module Contracts/Application/Infrastructure/Presentation projects for composition.",
+            ArchitectureLayer.RootInfrastructure =>
+                "ProjectName.Ai may reference Gorgeous.Ai, Gorgeous.Abstractions, Shared.AppModel, and Shared.Kernel for application-level AI composition.",
             ArchitectureLayer.Persistence =>
-                "Persistence may reference Gorgeous.Abstractions, Shared.Kernel, and module Application/Infrastructure projects for persistence composition.",
+                "Persistence may reference Gorgeous.Abstractions, Shared.AppModel, and module Application/Infrastructure projects for persistence composition.",
             _ => "Project must match a known architecture layer.",
         };
     }

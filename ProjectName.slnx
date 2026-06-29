@@ -1,9 +1,11 @@
 <Solution>
   <Project Path="src/ProjectName.Host/ProjectName.Host.csproj" />
   <Folder Name="/Source/RootInfrastructure/">
+    <Project Path="src/RootInfrastructure/ProjectName.Ai/ProjectName.Ai.csproj" />
     <Project Path="src/RootInfrastructure/ProjectName.Persistence/ProjectName.Persistence.csproj" />
   </Folder>
   <Folder Name="/Source/Libraries/">
+    <Project Path="src/Libraries/Gorgeous.Ai/Gorgeous.Ai.csproj" />
     <Project Path="src/Libraries/Gorgeous.Abstractions/Gorgeous.Abstractions.csproj" />
     <Project Path="src/Libraries/Gorgeous.Web/Gorgeous.Web.csproj" />
   </Folder>

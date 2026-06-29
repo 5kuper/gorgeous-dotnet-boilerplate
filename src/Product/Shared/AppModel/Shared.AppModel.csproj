@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
+    <ProjectReference Include="..\Kernel\Shared.Kernel.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 using Auth.Application;
 using Auth.Infrastructure;
+using ProjectName.Ai;
 using ProjectName.Persistence;
 using Users.Application;
 using Users.Infrastructure;
@@ -19,6 +20,7 @@ internal static class ModulesComposition
         services.AddAuthInfra(configuration);
 
         services.AddProjectNamePersistence(configuration);
+        services.AddProjectNameAi(configuration);
 
         return services;
     }

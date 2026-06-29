@@ -85,14 +85,36 @@ public sealed class LayerPurityTests
             "Shared.AppModel",
             "Shared.Conventions",
             "ProjectName.Host",
+            "ProjectName.Ai",
             "ProjectName.Persistence",
         ];
 
         var result = NetArchTestRule.AssembliesShouldNotDependOn(
-            [ArchitectureAssemblies.GorgeousAbstractions, ArchitectureAssemblies.GorgeousWeb],
+            [ArchitectureAssemblies.GorgeousAbstractions, ArchitectureAssemblies.GorgeousAi, ArchitectureAssemblies.GorgeousWeb],
             "Gorgeous library portability",
             forbiddenProductNamespaces,
-            "Gorgeous.Abstractions and Gorgeous.Web must not depend on Product, Host, Persistence, or product-owned Shared projects.");
+            "Gorgeous libraries must not depend on Product, Host, Persistence, or product-owned Shared projects.");
+
+        result.ShouldBeValid();
+    }
+
+    [Fact]
+    public void Product_code_should_not_depend_on_gorgeous_ai_infrastructure()
+    {
+        var productAssemblies = ArchitectureAssemblies.Modules
+            .SelectMany(module => module.Assemblies)
+            .Concat(
+            [
+                ArchitectureAssemblies.SharedKernel,
+                ArchitectureAssemblies.SharedAppModel,
+                ArchitectureAssemblies.SharedConventions,
+            ]);
+
+        var result = NetArchTestRule.AssembliesShouldNotDependOn(
+            productAssemblies,
+            "Product AI boundary",
+            ["Gorgeous.Ai"],
+            "Product code may depend on generic AI abstractions, but provider registry infrastructure belongs outside Product.");
 
         result.ShouldBeValid();
     }

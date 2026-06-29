@@ -19,6 +19,8 @@ internal static class ArchitectureAssemblies
 
     public static Assembly GorgeousAbstractions => LoadAssembly("Gorgeous.Abstractions");
 
+    public static Assembly GorgeousAi => LoadAssembly("Gorgeous.Ai");
+
     public static Assembly GorgeousWeb => LoadAssembly("Gorgeous.Web");
 
     public static Assembly SharedKernel => LoadAssembly("Shared.Kernel");

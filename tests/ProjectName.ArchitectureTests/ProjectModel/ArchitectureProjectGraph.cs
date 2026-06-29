@@ -99,7 +99,9 @@ internal sealed class ArchitectureProjectGraph
         return projectName switch
         {
             "ProjectName.Host" => (ArchitectureLayer.Host, null),
+            "ProjectName.Ai" => (ArchitectureLayer.RootInfrastructure, null),
             "ProjectName.Persistence" => (ArchitectureLayer.Persistence, null),
+            "Gorgeous.Ai" => (ArchitectureLayer.GorgeousAi, null),
             "Gorgeous.Abstractions" => (ArchitectureLayer.GorgeousAbstractions, null),
             "Gorgeous.Web" => (ArchitectureLayer.GorgeousWeb, null),
             "Shared.Kernel" => (ArchitectureLayer.SharedKernel, null),
