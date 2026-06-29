@@ -17,11 +17,15 @@ internal static class ArchitectureAssemblies
 
     public static Assembly Persistence => LoadAssembly("ProjectName.Persistence");
 
-    public static Assembly SharedCore => LoadAssembly("Shared.BuildingBlocks.Core");
+    public static Assembly GorgeousAbstractions => LoadAssembly("Gorgeous.Abstractions");
 
-    public static Assembly SharedApplication => LoadAssembly("Shared.BuildingBlocks.Application");
+    public static Assembly GorgeousWeb => LoadAssembly("Gorgeous.Web");
 
-    public static Assembly SharedWebFramework => LoadAssembly("Shared.WebFramework");
+    public static Assembly SharedKernel => LoadAssembly("Shared.Kernel");
+
+    public static Assembly SharedAppModel => LoadAssembly("Shared.AppModel");
+
+    public static Assembly SharedConventions => LoadAssembly("Shared.Conventions");
 
     private static IReadOnlyList<ModuleAssemblySet> LoadModuleAssemblySets()
     {

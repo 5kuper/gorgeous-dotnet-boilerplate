@@ -1,7 +1,7 @@
 using Auth.Application.Ports.Identity;
 using Auth.Application.Ports.Verification;
-using Shared.BuildingBlocks.Application.Messaging;
-using Shared.BuildingBlocks.Core.Results;
+using Shared.AppModel.Messaging;
+using Gorgeous.Abstractions.Results;
 using Users.Contracts.Verification;
 
 namespace Auth.Application.Features.Verification;

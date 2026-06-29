@@ -16,11 +16,19 @@ Product/Modules
 |-- Users
 `-- Auth
 
-Product/Shared
-|-- BuildingBlocks
-`-- Shared.WebFramework
+Libraries
+|-- Gorgeous.Abstractions
+`-- Gorgeous.Web
 
-Infrastructure
+Product/Shared
+|-- Kernel
+|   `-- Shared.Kernel
+|-- AppModel
+|   `-- Shared.AppModel
+`-- Conventions
+    `-- Shared.Conventions
+
+RootInfrastructure
 `-- ProjectName.Persistence
 ```
 
@@ -51,41 +59,66 @@ src/Product/Modules/{ModuleName}/
 
 ## Dependency Rules
 
-- `Domain` depends only on shared core building blocks.
-- `Application` depends on its domain, module contracts when needed, and shared application building blocks.
+- `Domain` depends only on shared kernel building blocks and portable result abstractions.
+- `Application` depends on its domain, module contracts when needed, shared application model building blocks, and portable application/result abstractions.
 - `Infrastructure` depends on the module domain/application contracts it implements.
-- `Presentation` depends on the module application layer, module contracts, and shared web framework.
+- `Presentation` depends on the module application layer, module contracts, `Gorgeous.Web`, and product-owned web policy names when needed.
 - Modules communicate with other modules through `Contracts` projects only.
 - A module must not reference another module's `Application`, `Domain`, `Infrastructure`, or `Presentation` project.
 - HTTP request and response models are not module contracts.
 
-## Shared Building Blocks
+## Portable Libraries
 
-Shared building blocks live under:
+Reusable libraries that are intended to move between projects live under:
 
 ```text
-src/Product/Shared/BuildingBlocks/
+src/Libraries/
 ```
 
-`Shared.BuildingBlocks.Core` contains domain-oriented primitives:
+`Gorgeous.Abstractions` contains portable abstractions:
 
-- `Entity`
-- `AggregateRoot`
-- `ValueObject`
-- `IDomainEvent`
-- `IRepository`
-- `Error`
 - `Result`
 - `Result<T>`
+- `Error`
+- `ErrorType`
+- `IClock`
+- `ICurrentUser`
 
-`Shared.BuildingBlocks.Application` contains application-oriented abstractions:
+It must stay framework-free and must not depend on ASP.NET Core or product code.
+
+`Gorgeous.Web` contains ASP.NET Core helpers and adapters for those abstractions:
+
+- result-to-HTTP mapping;
+- `ProblemDetails` helpers;
+- `HttpCurrentUser`;
+- `SystemClock`.
+
+`Gorgeous.Web` references `Gorgeous.Abstractions` and ASP.NET Core, but it must not depend on product modules or product-owned shared projects.
+
+## Shared Building Blocks
+
+Product-owned shared building blocks live under:
+
+```text
+src/Product/Shared/
+```
+
+They are part of this product's modular monolith and are not reusable library packages.
+
+`Shared.Kernel` is the product-owned shared domain kernel. It contains domain primitives and explicitly shared domain concepts used by multiple modules:
+
+- `BuildingBlocks/Entity`
+- `BuildingBlocks/AggregateRoot`
+- `BuildingBlocks/ValueObject`
+- `BuildingBlocks/IDomainEvent`
+- `BuildingBlocks/IRepository`
+
+`Shared.AppModel` contains the shared application-layer programming model:
 
 - `ICommand`
 - `ICommandHandler`
 - `IQuery`
 - `IQueryHandler`
-- `IClock`
-- `ICurrentUser`
 - `IUnitOfWork`
 
 Add a type to shared building blocks only when it is generic, stable, and genuinely shared across modules. Module-specific business language belongs in the module.
@@ -109,7 +142,7 @@ Exceptions are reserved for technical failures and programming errors.
 - safe public message;
 - `ErrorType` for response mapping.
 
-HTTP error mapping belongs in `Shared.WebFramework`, not in domain or application code.
+HTTP error mapping belongs in `Gorgeous.Web`, not in domain or application code.
 
 ## Web Layer
 
@@ -117,10 +150,10 @@ The project uses Minimal APIs.
 
 Module presentation projects map endpoint groups and translate HTTP models to application commands or queries. Endpoint handlers should stay thin and should not contain business rules.
 
-Reusable web concerns live in:
+Reusable ASP.NET Core helpers live in:
 
 ```text
-src/Product/Shared/Shared.WebFramework/
+src/Libraries/Gorgeous.Web/
 ```
 
 This includes:
@@ -128,9 +161,15 @@ This includes:
 - current-user access;
 - result-to-HTTP mapping;
 - `ProblemDetails` helpers;
-- rate limit policy names;
-- authorization policy names;
 - clock implementation.
+
+Product-owned API and cross-cutting naming conventions live in:
+
+```text
+src/Product/Shared/Conventions/
+```
+
+This keeps authorization and rate-limit policy names, claim names, header names, and similar product identifiers close to the product while leaving `Gorgeous.Web` reusable.
 
 ## Persistence
 

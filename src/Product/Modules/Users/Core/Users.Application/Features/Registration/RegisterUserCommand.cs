@@ -1,6 +1,7 @@
-using Shared.BuildingBlocks.Application.Abstractions;
-using Shared.BuildingBlocks.Application.Messaging;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Application;
+using Shared.AppModel.Abstractions;
+using Shared.AppModel.Messaging;
+using Gorgeous.Abstractions.Results;
 using Users.Contracts.Registration;
 using Users.Domain.Entities;
 using Users.Domain.Foundation.Errors;

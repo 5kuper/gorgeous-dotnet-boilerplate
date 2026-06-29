@@ -4,7 +4,7 @@ using Auth.Application.Ports.Verification;
 using Auth.Domain.Foundation.Errors;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.WebUtilities;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 
 namespace Auth.Infrastructure.Verification;
 

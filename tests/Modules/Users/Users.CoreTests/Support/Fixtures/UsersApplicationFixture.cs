@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.BuildingBlocks.Application.Abstractions;
+using Gorgeous.Abstractions.Application;
+using Shared.AppModel.Abstractions;
 using Shared.TestKit.TestDoubles;
 using Users.Application;
 using Users.Domain.Repositories;

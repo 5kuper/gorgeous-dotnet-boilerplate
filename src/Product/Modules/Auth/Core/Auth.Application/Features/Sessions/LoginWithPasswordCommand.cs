@@ -4,9 +4,9 @@ using Auth.Application.Ports.Tokens;
 using Auth.Domain.Entities;
 using Auth.Domain.Foundation.Errors;
 using Auth.Domain.Repositories;
-using Shared.BuildingBlocks.Application.Abstractions;
-using Shared.BuildingBlocks.Application.Messaging;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Application;
+using Shared.AppModel.Messaging;
+using Gorgeous.Abstractions.Results;
 using Users.Contracts.Authentication;
 
 namespace Auth.Application.Features.Sessions;

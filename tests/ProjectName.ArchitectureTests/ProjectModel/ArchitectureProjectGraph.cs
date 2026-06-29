@@ -100,9 +100,11 @@ internal sealed class ArchitectureProjectGraph
         {
             "ProjectName.Host" => (ArchitectureLayer.Host, null),
             "ProjectName.Persistence" => (ArchitectureLayer.Persistence, null),
-            "Shared.BuildingBlocks.Core" => (ArchitectureLayer.SharedCore, null),
-            "Shared.BuildingBlocks.Application" => (ArchitectureLayer.SharedApplication, null),
-            "Shared.WebFramework" => (ArchitectureLayer.SharedWebFramework, null),
+            "Gorgeous.Abstractions" => (ArchitectureLayer.GorgeousAbstractions, null),
+            "Gorgeous.Web" => (ArchitectureLayer.GorgeousWeb, null),
+            "Shared.Kernel" => (ArchitectureLayer.SharedKernel, null),
+            "Shared.AppModel" => (ArchitectureLayer.SharedAppModel, null),
+            "Shared.Conventions" => (ArchitectureLayer.SharedConventions, null),
             _ => ClassifyModuleProject(repositoryRoot, projectPath, projectName),
         };
     }

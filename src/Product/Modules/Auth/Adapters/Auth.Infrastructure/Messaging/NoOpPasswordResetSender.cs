@@ -1,6 +1,6 @@
 using Auth.Application.Ports.Messaging;
 using Microsoft.Extensions.Logging;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 
 namespace Auth.Infrastructure.Messaging;
 

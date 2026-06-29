@@ -5,7 +5,7 @@ using Auth.Application.Ports.Tokens;
 using Auth.Contracts.Tokens;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Shared.BuildingBlocks.Application.Abstractions;
+using Gorgeous.Abstractions.Application;
 using Users.Contracts.Authentication;
 
 namespace Auth.Infrastructure.Tokens;

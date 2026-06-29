@@ -1,6 +1,6 @@
 using Auth.Domain.Foundation.Errors;
-using Shared.BuildingBlocks.Core.Domain;
-using Shared.BuildingBlocks.Core.Results;
+using Shared.Kernel.BuildingBlocks;
+using Gorgeous.Abstractions.Results;
 
 namespace Auth.Domain.Entities;
 

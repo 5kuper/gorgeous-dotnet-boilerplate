@@ -1,5 +1,5 @@
 using MediatR;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 using Users.Contracts.Verification;
 
 namespace Users.Application.Features.EmailVerification;

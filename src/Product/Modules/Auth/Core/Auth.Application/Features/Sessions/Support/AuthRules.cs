@@ -1,5 +1,5 @@
 using Auth.Domain.Foundation.Errors;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 using Users.Contracts.Authentication;
 
 namespace Auth.Application.Features.Sessions.Support;

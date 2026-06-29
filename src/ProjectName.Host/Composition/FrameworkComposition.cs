@@ -1,5 +1,5 @@
-using Shared.BuildingBlocks.Application.Abstractions;
-using Shared.WebFramework;
+using Gorgeous.Abstractions.Application;
+using Gorgeous.Web;
 
 namespace ProjectName.Host.Composition;
 

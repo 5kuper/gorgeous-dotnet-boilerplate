@@ -5,7 +5,7 @@ using Auth.Infrastructure.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Shared.WebFramework;
+using Shared.Conventions;
 
 namespace ProjectName.Host.Composition;
 

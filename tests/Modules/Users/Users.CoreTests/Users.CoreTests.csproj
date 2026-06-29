@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\..\src\Product\Modules\Users\Core\Users.Domain\Users.Domain.csproj" />
     <ProjectReference Include="..\..\..\..\src\Product\Modules\Users\Core\Users.Application\Users.Application.csproj" />
     <ProjectReference Include="..\..\..\Shared\Shared.TestKit\Shared.TestKit.csproj" />

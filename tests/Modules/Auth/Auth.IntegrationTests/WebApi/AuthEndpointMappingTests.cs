@@ -1,6 +1,6 @@
 using Auth.IntegrationTests.WebApi.Support;
 using Shared.IntegrationTesting.WebApi;
-using Shared.WebFramework;
+using Shared.Conventions;
 
 namespace Auth.IntegrationTests.WebApi;
 

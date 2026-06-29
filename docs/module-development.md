@@ -69,6 +69,8 @@ Use cases:
 - return `Result` or `Result<T>` for business failures;
 - keep HTTP and EF Core details out of application code.
 
+Use `Gorgeous.Abstractions.Results` for `Result`, `Result<T>`, `Error`, and `ErrorType`.
+
 Simple application input checks can live in handlers. If a feature grows a dedicated validator, keep it in the same feature-area folder. Domain entities still enforce invariants that must always hold.
 
 ## Add Domain Behavior
@@ -129,7 +131,7 @@ Endpoint handlers should:
 
 - map HTTP requests to application commands or queries;
 - pass `CancellationToken ct`;
-- use shared result-to-HTTP helpers;
+- use `Gorgeous.Web` result-to-HTTP helpers;
 - attach authorization and rate limiting at group or endpoint level;
 - keep request and response models inside presentation.
 
@@ -158,7 +160,7 @@ Application code should depend on repository contracts and ports, not on EF Core
 Cross-module persistence composition lives in:
 
 ```text
-src/Infrastructure/ProjectName.Persistence/
+src/RootInfrastructure/ProjectName.Persistence/
 ```
 
 Use this application-level infrastructure area for shared database connection setup, DbContext registration, database initialization, and transactions that coordinate multiple module DbContexts.
@@ -181,8 +183,18 @@ Keep ownership visible. Do not place all module migrations into one unrelated in
 
 Use shared projects only for stable cross-module concepts.
 
-Use `Shared.BuildingBlocks.Core` for domain-neutral primitives.
-Use `Shared.BuildingBlocks.Application` for application-neutral abstractions.
-Use `Shared.WebFramework` for web-specific conventions and helpers.
+Use `src/Libraries` for portable libraries that can move between projects:
+
+- `Gorgeous.Abstractions` for portable result/current-user/clock abstractions.
+- `Gorgeous.Web` for ASP.NET Core helpers and adapters over those abstractions.
+
+Use `src/Product/Shared` for product-owned building blocks:
+
+- `Shared.Kernel` for the product-owned shared domain kernel.
+- `Shared.AppModel` for the shared application-layer programming model, such as commands, queries, handlers, and `IUnitOfWork`.
+
+Keep shared domain primitives such as `Entity`, `AggregateRoot`, `ValueObject`, `IDomainEvent`, and `IRepository` under `src/Product/Shared/Kernel/BuildingBlocks`.
+
+Use `src/Product/Shared/Conventions` for product-owned API and cross-cutting naming conventions such as authorization policy names, rate-limit policy names, claim names, headers, and route identifiers.
 
 If a type is shared only because two modules currently look similar, keep it local until a stable abstraction is clear.

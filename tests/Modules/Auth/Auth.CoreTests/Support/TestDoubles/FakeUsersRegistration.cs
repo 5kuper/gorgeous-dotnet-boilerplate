@@ -1,4 +1,4 @@
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 using Users.Contracts.Registration;
 
 namespace Auth.CoreTests.Support.TestDoubles;

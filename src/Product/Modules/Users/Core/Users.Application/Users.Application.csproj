@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
     <ProjectReference Include="..\Users.Domain\Users.Domain.csproj" />
     <ProjectReference Include="..\..\Users.Contracts\Users.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\Shared\BuildingBlocks\Shared.BuildingBlocks.Application\Shared.BuildingBlocks.Application.csproj" />
-    <ProjectReference Include="..\..\..\..\Shared\BuildingBlocks\Shared.BuildingBlocks.Core\Shared.BuildingBlocks.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\AppModel\Shared.AppModel.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Kernel\Shared.Kernel.csproj" />
   </ItemGroup>
 
 </Project>

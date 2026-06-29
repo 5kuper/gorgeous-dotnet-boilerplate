@@ -1,5 +1,5 @@
 using Auth.Application.Ports.Identity;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 
 namespace Auth.CoreTests.Support.TestDoubles;
 

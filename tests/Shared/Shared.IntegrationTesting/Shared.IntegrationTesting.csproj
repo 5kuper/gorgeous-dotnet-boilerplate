@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Product\Shared\BuildingBlocks\Shared.BuildingBlocks.Application\Shared.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

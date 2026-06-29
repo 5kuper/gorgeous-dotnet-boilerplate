@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\BuildingBlocks\Shared.BuildingBlocks.Core\Shared.BuildingBlocks.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

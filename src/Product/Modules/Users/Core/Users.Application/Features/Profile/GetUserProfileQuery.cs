@@ -1,5 +1,5 @@
-using Shared.BuildingBlocks.Application.Messaging;
-using Shared.BuildingBlocks.Core.Results;
+using Shared.AppModel.Messaging;
+using Gorgeous.Abstractions.Results;
 using Users.Domain.Foundation.Errors;
 using Users.Domain.Repositories;
 

@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
     <ProjectReference Include="..\..\Core\Users.Application\Users.Application.csproj" />
     <ProjectReference Include="..\..\Users.Contracts\Users.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\Shared\Shared.WebFramework\Shared.WebFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Libraries\Gorgeous.Web\Gorgeous.Web.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Conventions\Shared.Conventions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

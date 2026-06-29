@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Product\Shared\Conventions\Shared.Conventions.csproj" />
     <ProjectReference Include="..\..\..\..\src\Product\Modules\Auth\Adapters\Auth.Presentation\Auth.Presentation.csproj" />
     <ProjectReference Include="..\..\..\..\src\Product\Modules\Auth\Adapters\Auth.Infrastructure\Auth.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Shared\Shared.IntegrationTesting\Shared.IntegrationTesting.csproj" />

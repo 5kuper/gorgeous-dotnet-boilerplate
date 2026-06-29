@@ -1,4 +1,4 @@
-using Shared.BuildingBlocks.Application.Abstractions;
+using Shared.AppModel.Abstractions;
 
 namespace Users.CoreTests.Support.TestDoubles;
 

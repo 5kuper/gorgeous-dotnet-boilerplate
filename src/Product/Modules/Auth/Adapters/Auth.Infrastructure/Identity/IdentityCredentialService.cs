@@ -2,7 +2,7 @@ using Auth.Application.Ports.Identity;
 using Auth.Domain.Foundation.Errors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 
 namespace Auth.Infrastructure.Identity;
 

@@ -6,8 +6,9 @@ This repository is an ASP.NET Core modular monolith template.
 
 - `src/ProjectName.Host` is the composition root. Keep it focused on middleware, service registration, endpoint mapping, and host configuration.
 - `src/Product/Modules/{ModuleName}` contains product modules.
-- `src/Product/Shared` contains stable cross-module building blocks and web framework helpers.
-- `src/Infrastructure/ProjectName.Persistence` contains application-level persistence composition, database initialization, and cross-DbContext transactions.
+- `src/Libraries` contains portable libraries that can move between projects.
+- `src/Product/Shared` contains product-owned stable cross-module building blocks and conventions.
+- `src/RootInfrastructure/ProjectName.Persistence` contains application-level persistence composition, database initialization, and cross-DbContext transactions.
 - `tests` mirrors the product/module layout.
 - Project documentation starts at `docs/README.md`; update it when architecture, module boundaries, persistence ownership, authentication behavior, or public API conventions change.
 

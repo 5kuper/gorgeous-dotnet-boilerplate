@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Shared.BuildingBlocks.Application.Abstractions;
+using Shared.AppModel.Abstractions;
 using Users.Contracts.Authentication;
 using Users.Domain.Repositories;
 using Users.Infrastructure.Persistence;

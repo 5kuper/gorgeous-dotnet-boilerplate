@@ -1,7 +1,11 @@
 <Solution>
   <Project Path="src/ProjectName.Host/ProjectName.Host.csproj" />
-  <Folder Name="/Source/Infrastructure/">
-    <Project Path="src/Infrastructure/ProjectName.Persistence/ProjectName.Persistence.csproj" />
+  <Folder Name="/Source/RootInfrastructure/">
+    <Project Path="src/RootInfrastructure/ProjectName.Persistence/ProjectName.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/Source/Libraries/">
+    <Project Path="src/Libraries/Gorgeous.Abstractions/Gorgeous.Abstractions.csproj" />
+    <Project Path="src/Libraries/Gorgeous.Web/Gorgeous.Web.csproj" />
   </Folder>
   <Folder Name="/Source/" />
   <Folder Name="/Source/Product/" />
@@ -28,12 +32,10 @@
     <Project Path="src/Product/Modules/Users/Core/Users.Application/Users.Application.csproj" />
     <Project Path="src/Product/Modules/Users/Core/Users.Domain/Users.Domain.csproj" />
   </Folder>
-  <Folder Name="/Source/Product/Shared/BuildingBlocks/">
-    <Project Path="src/Product/Shared/BuildingBlocks/Shared.BuildingBlocks.Application/Shared.BuildingBlocks.Application.csproj" />
-    <Project Path="src/Product/Shared/BuildingBlocks/Shared.BuildingBlocks.Core/Shared.BuildingBlocks.Core.csproj" />
-  </Folder>
   <Folder Name="/Source/Product/Shared/">
-    <Project Path="src/Product/Shared/Shared.WebFramework/Shared.WebFramework.csproj" />
+    <Project Path="src/Product/Shared/AppModel/Shared.AppModel.csproj" />
+    <Project Path="src/Product/Shared/Kernel/Shared.Kernel.csproj" />
+    <Project Path="src/Product/Shared/Conventions/Shared.Conventions.csproj" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/ProjectName.ArchitectureTests/ProjectName.ArchitectureTests.csproj" />

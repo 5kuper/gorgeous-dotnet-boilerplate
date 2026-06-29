@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\ProjectName.Persistence\ProjectName.Persistence.csproj" />
+    <ProjectReference Include="..\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
+    <ProjectReference Include="..\Libraries\Gorgeous.Web\Gorgeous.Web.csproj" />
+    <ProjectReference Include="..\RootInfrastructure\ProjectName.Persistence\ProjectName.Persistence.csproj" />
     <ProjectReference Include="..\Product\Modules\Users\Core\Users.Application\Users.Application.csproj" />
     <ProjectReference Include="..\Product\Modules\Users\Adapters\Users.Infrastructure\Users.Infrastructure.csproj" />
     <ProjectReference Include="..\Product\Modules\Users\Adapters\Users.Presentation\Users.Presentation.csproj" />
@@ -22,7 +24,7 @@
     <ProjectReference Include="..\Product\Modules\Auth\Core\Auth.Application\Auth.Application.csproj" />
     <ProjectReference Include="..\Product\Modules\Auth\Adapters\Auth.Infrastructure\Auth.Infrastructure.csproj" />
     <ProjectReference Include="..\Product\Modules\Auth\Adapters\Auth.Presentation\Auth.Presentation.csproj" />
-    <ProjectReference Include="..\Product\Shared\Shared.WebFramework\Shared.WebFramework.csproj" />
+    <ProjectReference Include="..\Product\Shared\Conventions\Shared.Conventions.csproj" />
   </ItemGroup>
 
 </Project>

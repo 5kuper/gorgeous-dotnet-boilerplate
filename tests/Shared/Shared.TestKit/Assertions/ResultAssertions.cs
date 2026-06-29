@@ -1,4 +1,4 @@
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 
 namespace Shared.TestKit.Assertions;
 

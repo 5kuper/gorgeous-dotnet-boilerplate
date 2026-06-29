@@ -1,4 +1,4 @@
-using Shared.BuildingBlocks.Core.Domain;
+using Shared.Kernel.BuildingBlocks;
 
 namespace Users.Domain.Entities;
 

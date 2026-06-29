@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.BuildingBlocks.Application.Abstractions;
+using Gorgeous.Abstractions.Application;
 using Shared.IntegrationTesting.Authentication;
 using Shared.IntegrationTesting.Messaging;
 using Users.Presentation.WebApi;

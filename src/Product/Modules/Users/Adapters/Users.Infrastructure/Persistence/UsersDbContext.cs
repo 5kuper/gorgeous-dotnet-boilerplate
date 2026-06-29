@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Shared.BuildingBlocks.Application.Abstractions;
+using Shared.AppModel.Abstractions;
 using Users.Domain.Entities;
 
 namespace Users.Infrastructure.Persistence;

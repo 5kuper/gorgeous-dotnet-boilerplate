@@ -10,7 +10,8 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Shared.WebFramework;
+using Gorgeous.Web;
+using Shared.Conventions;
 
 namespace Auth.Presentation.WebApi;
 

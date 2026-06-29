@@ -1,8 +1,8 @@
 using Auth.Application.Ports.Identity;
 using Auth.Domain.Repositories;
-using Shared.BuildingBlocks.Application.Abstractions;
-using Shared.BuildingBlocks.Application.Messaging;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Application;
+using Shared.AppModel.Messaging;
+using Gorgeous.Abstractions.Results;
 
 namespace Auth.Application.Features.PasswordReset;
 

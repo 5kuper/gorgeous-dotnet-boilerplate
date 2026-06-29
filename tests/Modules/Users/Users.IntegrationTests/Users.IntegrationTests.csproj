@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Product\Shared\Conventions\Shared.Conventions.csproj" />
     <ProjectReference Include="..\..\..\..\src\Product\Modules\Users\Adapters\Users.Presentation\Users.Presentation.csproj" />
     <ProjectReference Include="..\..\..\..\src\Product\Modules\Users\Adapters\Users.Infrastructure\Users.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Shared\Shared.IntegrationTesting\Shared.IntegrationTesting.csproj" />

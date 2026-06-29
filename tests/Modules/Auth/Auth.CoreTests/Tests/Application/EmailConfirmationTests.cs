@@ -2,7 +2,7 @@ using Auth.Application.Features.Verification;
 using Auth.Application.Ports.Verification;
 using Auth.CoreTests.Support.Fixtures;
 using Auth.Domain.Foundation.Errors;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 using Shared.TestKit.Assertions;
 
 namespace Auth.CoreTests.Tests.Application;

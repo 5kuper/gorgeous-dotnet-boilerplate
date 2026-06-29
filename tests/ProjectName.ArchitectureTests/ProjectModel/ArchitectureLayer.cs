@@ -10,7 +10,9 @@ internal enum ArchitectureLayer
     Presentation,
     Host,
     Persistence,
-    SharedCore,
-    SharedApplication,
-    SharedWebFramework,
+    GorgeousAbstractions,
+    GorgeousWeb,
+    SharedKernel,
+    SharedAppModel,
+    SharedConventions,
 }

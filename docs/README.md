@@ -7,7 +7,7 @@ It is intentionally written as project documentation, not template documentation
 ## Reading Order
 
 1. [Getting Started](getting-started.md) explains how to configure, run, and smoke-check the application.
-2. [Architecture](architecture.md) explains the module model, dependency rules, persistence ownership, HTTP conventions, and shared building blocks.
+2. [Architecture](architecture.md) explains the module model, portable libraries, dependency rules, persistence ownership, HTTP conventions, and shared building blocks.
 3. [Module Development](module-development.md) explains how to add modules, use cases, contracts, endpoints, persistence code, and migrations.
 4. [Users And Auth](users-auth.md) documents the reference Users/Auth implementation that ships with the project.
 5. [Testing](testing.md) explains the test project layout and when each test type belongs.

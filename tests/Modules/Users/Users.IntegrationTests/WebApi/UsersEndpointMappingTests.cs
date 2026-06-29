@@ -1,5 +1,5 @@
 using Shared.IntegrationTesting.WebApi;
-using Shared.WebFramework;
+using Shared.Conventions;
 using Users.IntegrationTests.WebApi.Support;
 
 namespace Users.IntegrationTests.WebApi;

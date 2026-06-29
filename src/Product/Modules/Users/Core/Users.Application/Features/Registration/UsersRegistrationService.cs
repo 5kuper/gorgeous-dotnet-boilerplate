@@ -1,5 +1,5 @@
 using MediatR;
-using Shared.BuildingBlocks.Core.Results;
+using Gorgeous.Abstractions.Results;
 using Users.Contracts.Registration;
 
 namespace Users.Application.Features.Registration;

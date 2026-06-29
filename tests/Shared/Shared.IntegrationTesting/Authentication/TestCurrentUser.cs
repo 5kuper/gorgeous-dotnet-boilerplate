@@ -1,4 +1,4 @@
-using Shared.BuildingBlocks.Application.Abstractions;
+using Gorgeous.Abstractions.Application;
 
 namespace Shared.IntegrationTesting.Authentication;
 

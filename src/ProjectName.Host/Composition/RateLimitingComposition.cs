@@ -1,5 +1,5 @@
 using System.Threading.RateLimiting;
-using Shared.WebFramework;
+using Shared.Conventions;
 
 namespace ProjectName.Host.Composition;
 

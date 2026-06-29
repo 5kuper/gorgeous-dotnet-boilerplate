@@ -1,5 +1,5 @@
-using Shared.BuildingBlocks.Core.Domain;
-using Shared.BuildingBlocks.Core.Results;
+using Shared.Kernel.BuildingBlocks;
+using Gorgeous.Abstractions.Results;
 using Users.Domain.Foundation.Errors;
 
 namespace Users.Domain.Entities;
