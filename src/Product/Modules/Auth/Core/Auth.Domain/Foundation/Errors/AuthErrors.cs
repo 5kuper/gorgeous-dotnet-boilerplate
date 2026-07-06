@@ -42,12 +42,14 @@ public static class AuthErrors
     public static readonly Error PasswordResetFailed = new(
         "Auth.PasswordResetFailed",
         "Password reset failed.",
-        ErrorType.Validation);
+        ErrorType.Validation,
+        ErrorVisibility.Public);
 
     public static readonly Error InvalidEmailConfirmationCode = new(
         "Auth.InvalidEmailConfirmationCode",
         "Email confirmation code is invalid.",
-        ErrorType.Validation);
+        ErrorType.Validation,
+        ErrorVisibility.Public);
 
     public static readonly Error IdentityOperationFailed = new(
         "Auth.IdentityOperationFailed",

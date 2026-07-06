@@ -185,10 +185,17 @@ Exceptions are reserved for technical failures and programming errors.
 `Error` values include:
 
 - stable module-scoped code;
-- safe public message;
 - `ErrorType` for response mapping.
+- `ErrorVisibility` for public disclosure policy.
 
-HTTP error mapping belongs in `Gorgeous.Web`, not in domain or application code.
+Errors are sensitive by default. Mark an error as `Public` only when the code and message are safe to expose directly to API clients, such as simple validation failures.
+
+HTTP error mapping belongs in `Gorgeous.Web`, not in domain or application code. The web layer has two result-to-HTTP paths:
+
+- `ToHttpResult` is trusted and transparent. It maps the original `Error` into `ProblemDetails`.
+- `ToPublicHttpResult` is public-safe. It first applies endpoint-specific disclosure masks, then exposes `Public` errors as-is, and otherwise returns a generic `Common.RequestFailed` response with the original error status category.
+
+Module-specific disclosure masks live in module presentation projects. Auth masks are defined in `Auth.Presentation` and match by stable `Error.Code` strings so presentation does not reference domain error constants.
 
 ## Web Layer
 

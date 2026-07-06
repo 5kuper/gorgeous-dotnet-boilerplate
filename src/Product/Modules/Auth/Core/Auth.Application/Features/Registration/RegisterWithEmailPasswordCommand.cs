@@ -32,7 +32,8 @@ internal sealed class RegisterWithEmailPasswordCommandHandler(
             return Result.Failure<RegistrationResult>(new Error(
                 "Auth.InvalidRegistration",
                 "Registration data is invalid.",
-                ErrorType.Validation));
+                ErrorType.Validation,
+                ErrorVisibility.Public));
         }
 
         var registeredUserResult = await registrationTransaction.ExecuteAsync(

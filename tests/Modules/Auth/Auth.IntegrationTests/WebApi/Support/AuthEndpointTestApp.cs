@@ -8,10 +8,10 @@ namespace Auth.IntegrationTests.WebApi.Support;
 
 internal static class AuthEndpointTestApp
 {
-    public static WebApplication Create()
+    public static WebApplication Create(ISender? sender = null)
     {
         var builder = WebApplication.CreateBuilder();
-        builder.Services.AddSingleton<ISender, ThrowingSender>();
+        builder.Services.AddSingleton<ISender>(sender ?? TestSender.Throwing());
 
         var app = builder.Build();
         app.MapAuthWebApi();

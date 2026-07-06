@@ -17,12 +17,14 @@ public static class UserErrors
     public static readonly Error InvalidEmail = new(
         "Users.InvalidEmail",
         "Email is invalid.",
-        ErrorType.Validation);
+        ErrorType.Validation,
+        ErrorVisibility.Public);
 
     public static readonly Error DisplayNameRequired = new(
         "Users.DisplayNameRequired",
         "Display name is required.",
-        ErrorType.Validation);
+        ErrorType.Validation,
+        ErrorVisibility.Public);
 
     public static readonly Error RoleAlreadyAssigned = new(
         "Users.RoleAlreadyAssigned",

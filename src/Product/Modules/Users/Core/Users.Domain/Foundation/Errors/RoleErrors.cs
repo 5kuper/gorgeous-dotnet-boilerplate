@@ -12,12 +12,14 @@ public static class RoleErrors
     public static readonly Error CodeRequired = new(
         "Users.RoleCodeRequired",
         "Role code is required.",
-        ErrorType.Validation);
+        ErrorType.Validation,
+        ErrorVisibility.Public);
 
     public static readonly Error NameRequired = new(
         "Users.RoleNameRequired",
         "Role name is required.",
-        ErrorType.Validation);
+        ErrorType.Validation,
+        ErrorVisibility.Public);
 
     public static readonly Error CodeAlreadyUsed = new(
         "Users.RoleCodeAlreadyUsed",

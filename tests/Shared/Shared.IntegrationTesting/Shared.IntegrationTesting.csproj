@@ -3,6 +3,7 @@
   <ItemGroup>
     <PackageReference Include="MediatR" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="xunit.assert" />
   </ItemGroup>
 
   <ItemGroup>

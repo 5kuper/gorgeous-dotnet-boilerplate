@@ -7,10 +7,10 @@ using Auth.Application.Features.Verification;
 using Auth.Presentation.WebApi.Requests;
 using Auth.Presentation.WebApi.Responses;
 using MediatR;
+using Gorgeous.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Gorgeous.Web;
 using Shared.Conventions;
 
 namespace Auth.Presentation.WebApi;
@@ -30,7 +30,7 @@ public static class AuthEndpoints
                 new RegisterWithEmailPasswordCommand(request.Email, request.Password, request.DisplayName),
                 ct);
 
-            return result.ToHttpResult(value => TypedResults.Created(
+            return result.ToPublicHttpResult(AuthErrorDisclosure.Register, value => TypedResults.Created(
                 $"/api/users/{value.UserPublicId}",
                 new RegistrationResponse(value.UserPublicId, value.Email, value.EmailConfirmationRequired)));
         })
@@ -50,7 +50,7 @@ public static class AuthEndpoints
                     httpContext.Connection.RemoteIpAddress?.ToString()),
                 ct);
 
-            return result.ToHttpResult(ToAuthResponse);
+            return result.ToPublicHttpResult(AuthErrorDisclosure.Login, ToAuthResponse);
         })
         .RequireRateLimiting(RateLimitPolicies.AuthLogin);
 
@@ -67,7 +67,7 @@ public static class AuthEndpoints
                     httpContext.Connection.RemoteIpAddress?.ToString()),
                 ct);
 
-            return result.ToHttpResult(ToAuthResponse);
+            return result.ToPublicHttpResult(AuthErrorDisclosure.Refresh, ToAuthResponse);
         });
 
         group.MapPost("/logout", async (
@@ -88,7 +88,7 @@ public static class AuthEndpoints
         {
             var result = await sender.Send(new ConfirmEmailCommand(request.Code), ct);
 
-            return result.ToHttpResult();
+            return result.ToPublicHttpResult(AuthErrorDisclosure.EmailConfirmation);
         })
         .RequireRateLimiting(RateLimitPolicies.AuthVerificationResend);
 
@@ -112,7 +112,7 @@ public static class AuthEndpoints
                 new ResetPasswordCommand(request.Email, request.Token, request.NewPassword),
                 ct);
 
-            return result.ToHttpResult();
+            return result.ToPublicHttpResult();
         })
         .RequireRateLimiting(RateLimitPolicies.AuthPasswordReset);
 

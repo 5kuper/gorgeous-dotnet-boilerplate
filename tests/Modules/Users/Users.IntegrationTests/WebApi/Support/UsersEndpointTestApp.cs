@@ -10,10 +10,10 @@ namespace Users.IntegrationTests.WebApi.Support;
 
 internal static class UsersEndpointTestApp
 {
-    public static WebApplication Create()
+    public static WebApplication Create(ISender? sender = null)
     {
         var builder = WebApplication.CreateBuilder();
-        builder.Services.AddSingleton<ISender, ThrowingSender>();
+        builder.Services.AddSingleton<ISender>(sender ?? TestSender.Throwing());
         builder.Services.AddSingleton<ICurrentUser>(new TestCurrentUser(Guid.NewGuid()));
 
         var app = builder.Build();
