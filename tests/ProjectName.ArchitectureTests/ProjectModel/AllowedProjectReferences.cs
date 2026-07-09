@@ -81,6 +81,7 @@ internal static class AllowedProjectReferences
     {
         if (dependency.Layer is
             ArchitectureLayer.GorgeousAbstractions or
+            ArchitectureLayer.GorgeousWeb or
             ArchitectureLayer.SharedAppModel or
             ArchitectureLayer.SharedKernel)
         {
@@ -114,6 +115,7 @@ internal static class AllowedProjectReferences
             ArchitectureLayer.RootInfrastructure or
             ArchitectureLayer.GorgeousAbstractions or
             ArchitectureLayer.GorgeousWeb or
+            ArchitectureLayer.SharedAppModel or
             ArchitectureLayer.SharedConventions)
         {
             return true;
@@ -132,6 +134,7 @@ internal static class AllowedProjectReferences
         return dependency.Layer is
             ArchitectureLayer.GorgeousAi or
             ArchitectureLayer.GorgeousAbstractions or
+            ArchitectureLayer.GorgeousWeb or
             ArchitectureLayer.SharedAppModel or
             ArchitectureLayer.SharedKernel;
     }
@@ -140,6 +143,7 @@ internal static class AllowedProjectReferences
     {
         if (dependency.Layer is
             ArchitectureLayer.GorgeousAbstractions or
+            ArchitectureLayer.GorgeousWeb or
             ArchitectureLayer.SharedAppModel)
         {
             return true;
@@ -158,7 +162,7 @@ internal static class AllowedProjectReferences
             ArchitectureLayer.Application =>
                 "Application may reference own Domain, any module Contracts, Gorgeous.Abstractions, Shared.AppModel, and Shared.Kernel.",
             ArchitectureLayer.Infrastructure =>
-                "Infrastructure may reference own Domain/Application, any module Contracts, Gorgeous.Abstractions, Shared.AppModel, and Shared.Kernel.",
+                "Infrastructure may reference own Domain/Application, any module Contracts, Gorgeous.Abstractions, Gorgeous.Web configuration helpers, Shared.AppModel, and Shared.Kernel.",
             ArchitectureLayer.Presentation =>
                 "Presentation may reference own Application/Contracts, Gorgeous.Abstractions, Gorgeous.Web, and shared conventions constants.",
             ArchitectureLayer.GorgeousAi => "Gorgeous.Ai may reference Gorgeous.Abstractions only.",
@@ -170,9 +174,9 @@ internal static class AllowedProjectReferences
             ArchitectureLayer.Host =>
                 "Host may reference root infrastructure, Persistence, Gorgeous.Abstractions, Gorgeous.Web, shared conventions constants, and module Contracts/Application/Infrastructure/Presentation projects for composition.",
             ArchitectureLayer.RootInfrastructure =>
-                "ProjectName.Ai may reference Gorgeous.Ai, Gorgeous.Abstractions, Shared.AppModel, and Shared.Kernel for application-level AI composition.",
+                "ProjectName.Ai may reference Gorgeous.Ai, Gorgeous.Abstractions, Gorgeous.Web configuration helpers, Shared.AppModel, and Shared.Kernel for application-level AI composition.",
             ArchitectureLayer.Persistence =>
-                "Persistence may reference Gorgeous.Abstractions, Shared.AppModel, and module Application/Infrastructure projects for persistence composition.",
+                "Persistence may reference Gorgeous.Abstractions, Gorgeous.Web configuration helpers, Shared.AppModel, and module Application/Infrastructure projects for persistence composition.",
             _ => "Project must match a known architecture layer.",
         };
     }

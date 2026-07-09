@@ -1,0 +1,11 @@
+{
+  "Ai": {
+    "Providers": {},
+    "Scenarios": {
+      "Example": {
+        "Provider": "",
+        "Model": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "Azure": {
+    "AppConfiguration": {
+      "Enabled": false,
+      "Endpoint": ""
+    }
+  }
+}

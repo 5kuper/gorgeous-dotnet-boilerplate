@@ -1,10 +1,12 @@
 using System.Data.Common;
 using Auth.Application.Ports.Registration;
 using Auth.Infrastructure.Persistence;
+using Gorgeous.Web.Configuration;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using ProjectName.Persistence.Transactions;
 using Users.Infrastructure.Persistence;
 
@@ -16,10 +18,13 @@ public static class PersistenceRegistration
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        string connectionString = configuration.GetConnectionString("Default")
-            ?? "Data Source=projectname.db";
+        services.AddValidatedOptions<PersistenceOptions, PersistenceOptionsValidator>(
+            configuration,
+            PersistenceOptions.SectionName);
 
-        services.AddScoped<DbConnection>(_ => new SqliteConnection(connectionString));
+        services.AddScoped<DbConnection>(serviceProvider =>
+            new SqliteConnection(
+                serviceProvider.GetRequiredService<IOptions<PersistenceOptions>>().Value.ConnectionString));
 
         services.AddDbContext<AuthDbContext>((serviceProvider, options) =>
             options.UseSqlite(

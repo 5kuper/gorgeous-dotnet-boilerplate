@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Libraries\Gorgeous.Web\Gorgeous.Web.csproj" />
     <ProjectReference Include="..\..\Auth.Contracts\Auth.Contracts.csproj" />
     <ProjectReference Include="..\..\Core\Auth.Application\Auth.Application.csproj" />
     <ProjectReference Include="..\..\Core\Auth.Domain\Auth.Domain.csproj" />

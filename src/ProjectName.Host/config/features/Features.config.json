@@ -1,0 +1,6 @@
+{
+  "FeatureManagement": {
+    "PlaceholderScopeA.PlaceholderFeature": false,
+    "PlaceholderScopeB.PlaceholderFeature": false
+  }
+}

@@ -5,7 +5,7 @@ using Shared.Kernel.Ai;
 
 namespace ProjectName.Ai;
 
-internal sealed class AiScenarioModelResolver(AiScenarioOptions options) : IAiScenarioModelResolver
+internal sealed class AiScenarioModelResolver(AiScenarioModelCatalog modelCatalog) : IAiScenarioModelResolver
 {
     public Result<AiModelSelection> Resolve(AiScenario scenario)
     {
@@ -15,7 +15,7 @@ internal sealed class AiScenarioModelResolver(AiScenarioOptions options) : IAiSc
                 new Error("Ai.ScenarioMissing", "AI scenario is required.", ErrorType.Validation));
         }
 
-        if (!options.TryGetModelSelection(scenario, out var modelSelection))
+        if (!modelCatalog.TryGetModelSelection(scenario, out var modelSelection))
         {
             return Result.Failure<AiModelSelection>(
                 new Error("Ai.ScenarioUnknown", $"AI scenario '{scenario}' is not configured.", ErrorType.NotFound));

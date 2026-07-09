@@ -27,7 +27,11 @@ internal static class AuthPersistenceServices
                 ["Auth:Jwt:Issuer"] = "test-issuer",
                 ["Auth:Jwt:Audience"] = "test-audience",
                 ["Auth:Jwt:SigningKey"] = "test-signing-key-with-more-than-32-bytes",
-                ["Auth:Jwt:AccessTokenMinutes"] = "10"
+                ["Auth:Jwt:AccessTokenMinutes"] = "10",
+                ["Auth:Identity:RequireUniqueEmail"] = "true",
+                ["Auth:Identity:RequireConfirmedEmail"] = "true",
+                ["Auth:Identity:LockoutAllowedForNewUsers"] = "true",
+                ["Auth:Identity:MaxFailedAccessAttempts"] = "5"
             })
             .Build();
     }

@@ -22,11 +22,19 @@ dotnet test .\ProjectName.slnx
 
 ## Local Configuration
 
-The default connection string is:
+Configuration is split across `appsettings.json` and module/root/feature files under:
+
+```text
+src/ProjectName.Host/config/
+```
+
+The default SQLite connection string is in `config/root/Persistence.config.json`:
 
 ```json
-"ConnectionStrings": {
-  "Default": "Data Source=projectname.db"
+"Persistence": {
+  "Provider": "Sqlite",
+  "ConnectionString": "Data Source=projectname.db",
+  "ApplyMigrationsOnStartup": false
 }
 ```
 
@@ -37,6 +45,8 @@ $env:Auth__Jwt__SigningKey = "local-development-signing-key-32-bytes-minimum"
 ```
 
 The signing key must be at least 32 UTF-8 bytes. Placeholder values are rejected on startup.
+
+For the full provider order and module config ownership rules, see [Configuration](configuration.md).
 
 ## Run The Host
 

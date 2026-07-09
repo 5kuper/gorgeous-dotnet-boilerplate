@@ -1,0 +1,16 @@
+{
+  "Auth": {
+    "Identity": {
+      "RequireUniqueEmail": true,
+      "RequireConfirmedEmail": true,
+      "LockoutAllowedForNewUsers": true,
+      "MaxFailedAccessAttempts": 5
+    },
+    "Jwt": {
+      "Issuer": "ProjectName",
+      "Audience": "ProjectName",
+      "SigningKey": "",
+      "AccessTokenMinutes": 10
+    }
+  }
+}

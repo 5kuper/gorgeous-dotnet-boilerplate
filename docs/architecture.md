@@ -101,7 +101,8 @@ It references `Gorgeous.Abstractions` only today. Future provider adapters may a
 - result-to-HTTP mapping;
 - `ProblemDetails` helpers;
 - `HttpCurrentUser`;
-- `SystemClock`.
+- `SystemClock`;
+- generic validated options registration.
 
 `Gorgeous.Web` references `Gorgeous.Abstractions` and ASP.NET Core, but it must not depend on product modules or product-owned shared projects.
 
@@ -127,6 +128,7 @@ They are part of this product's modular monolith and are not reusable library pa
 `Shared.AppModel` contains the shared application-layer programming model:
 
 - AI scenario ports such as `IAiScenarioModelResolver` and `IAiScenarioChatCompletionClient`
+- feature flag access through `IFeatureGate`
 - `ICommand`
 - `ICommandHandler`
 - `IQuery`
@@ -168,6 +170,22 @@ Configuration is split by responsibility:
 ```
 
 `Ai:Providers` is reserved for future provider packages. `Ai:Scenarios` maps product scenarios to provider/model selections. Missing or unknown AI scenario configuration returns `Result` errors; it does not throw business-flow exceptions.
+
+## Configuration Boundary
+
+The host composes configuration from base app settings, root infrastructure files, module files, feature files, environment-specific files, development user secrets, optional Azure App Configuration, environment variables, and command line arguments.
+
+Modules own their configuration sections and bind them to typed options in infrastructure. The host owns provider order and cloud configuration sources. Application and domain code should not read `IConfiguration` directly.
+
+See [Configuration](configuration.md) for source order and file ownership.
+
+## Feature Flags
+
+Feature flag names live in `Shared.Conventions.AppFeatures`.
+
+Application code depends on `Shared.AppModel.Abstractions.IFeatureGate`. The host implements that abstraction over Microsoft Feature Management.
+
+Modules and application projects must not reference `Microsoft.FeatureManagement` or Azure packages. This keeps feature-flag provider choices in the composition root.
 
 ## Error Flow
 

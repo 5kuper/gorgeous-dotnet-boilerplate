@@ -1,0 +1,7 @@
+{
+  "Persistence": {
+    "Provider": "Sqlite",
+    "ConnectionString": "Data Source=projectname.db",
+    "ApplyMigrationsOnStartup": false
+  }
+}

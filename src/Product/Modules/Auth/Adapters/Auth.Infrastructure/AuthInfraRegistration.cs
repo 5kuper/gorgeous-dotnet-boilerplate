@@ -9,7 +9,7 @@ using Auth.Infrastructure.Persistence;
 using Auth.Infrastructure.Persistence.Repositories;
 using Auth.Infrastructure.Tokens;
 using Auth.Infrastructure.Verification;
-using Microsoft.AspNetCore.DataProtection;
+using Gorgeous.Web.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,24 +24,32 @@ public static class AuthInfraRegistration
         IConfiguration configuration)
     {
         services
-            .AddIdentityCore<AppIdentityUser>(options =>
-            {
-                options.User.RequireUniqueEmail = true;
-                options.SignIn.RequireConfirmedEmail = true;
-                options.Lockout.AllowedForNewUsers = true;
-                options.Lockout.MaxFailedAccessAttempts = 5;
-            })
+            .AddIdentityCore<AppIdentityUser>()
             .AddRoles<IdentityRole<long>>()
             .AddEntityFrameworkStores<AuthDbContext>()
             .AddSignInManager()
             .AddDefaultTokenProviders();
 
-        services.AddDataProtection();
+        services.AddValidatedOptions<AuthIdentityOptions, AuthIdentityOptionsValidator>(
+            configuration,
+            AuthIdentityOptions.SectionName);
+
         services
-            .AddOptions<AuthTokenOptions>()
-            .Bind(configuration.GetSection(AuthTokenOptions.SectionName))
-            .ValidateOnStart();
-        services.AddSingleton<IValidateOptions<AuthTokenOptions>, AuthTokenOptionsValidator>();
+            .AddOptions<IdentityOptions>()
+            .Configure<IOptions<AuthIdentityOptions>>((options, authIdentityOptions) =>
+            {
+                var identityOptions = authIdentityOptions.Value;
+
+                options.User.RequireUniqueEmail = identityOptions.RequireUniqueEmail;
+                options.SignIn.RequireConfirmedEmail = identityOptions.RequireConfirmedEmail;
+                options.Lockout.AllowedForNewUsers = identityOptions.LockoutAllowedForNewUsers;
+                options.Lockout.MaxFailedAccessAttempts = identityOptions.MaxFailedAccessAttempts;
+            });
+
+        services.AddDataProtection();
+        services.AddValidatedOptions<AuthTokenOptions, AuthTokenOptionsValidator>(
+            configuration,
+            AuthTokenOptions.SectionName);
 
         services.AddScoped<IIdentityCredentialService, IdentityCredentialService>();
         services.AddScoped<IRefreshSessionRepository, RefreshSessionRepository>();

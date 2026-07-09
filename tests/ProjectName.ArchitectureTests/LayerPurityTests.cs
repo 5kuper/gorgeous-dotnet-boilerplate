@@ -20,6 +20,9 @@ public sealed class LayerPurityTests
         "Microsoft.AspNetCore.Identity",
         "Microsoft.IdentityModel",
         "System.IdentityModel",
+        "Microsoft.FeatureManagement",
+        "Microsoft.Azure",
+        "Azure.",
         "Stripe",
     ];
 

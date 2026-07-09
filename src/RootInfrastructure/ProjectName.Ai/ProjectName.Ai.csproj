@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Gorgeous.Abstractions\Gorgeous.Abstractions.csproj" />
     <ProjectReference Include="..\..\Libraries\Gorgeous.Ai\Gorgeous.Ai.csproj" />
+    <ProjectReference Include="..\..\Libraries\Gorgeous.Web\Gorgeous.Web.csproj" />
     <ProjectReference Include="..\..\Product\Shared\AppModel\Shared.AppModel.csproj" />
     <ProjectReference Include="..\..\Product\Shared\Kernel\Shared.Kernel.csproj" />
   </ItemGroup>

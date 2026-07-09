@@ -41,6 +41,7 @@
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/ProjectName.ArchitectureTests/ProjectName.ArchitectureTests.csproj" />
+    <Project Path="tests/ProjectName.Host.Tests/ProjectName.Host.Tests.csproj" />
   </Folder>
   <Folder Name="/Tests/Modules/" />
   <Folder Name="/Tests/Modules/Auth/">

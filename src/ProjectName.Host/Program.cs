@@ -1,8 +1,12 @@
+using Microsoft.Extensions.Options;
 using ProjectName.Host.Composition;
 using ProjectName.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddProjectConfiguration(args);
+
+builder.Services.AddConfigurationServices(builder.Configuration);
 builder.Services.AddFramework();
 
 builder.Services.AddModules(builder.Configuration);
@@ -11,8 +15,10 @@ builder.Services.AddRateLimiting();
 
 var app = builder.Build();
 
+var persistenceOptions = app.Services.GetRequiredService<IOptions<PersistenceOptions>>().Value;
+
 if (app.Environment.IsDevelopment() ||
-    app.Configuration.GetValue<bool>("Persistence:ApplyMigrationsOnStartup"))
+    persistenceOptions.ApplyMigrationsOnStartup)
 {
     await using var scope = app.Services.CreateAsyncScope();
 
@@ -21,6 +27,7 @@ if (app.Environment.IsDevelopment() ||
         .InitializeAsync(app.Lifetime.ApplicationStopping);
 }
 
+app.UseProjectConfiguration();
 app.UseFramework();
 app.UseSecurity();
 
